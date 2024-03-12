@@ -14,12 +14,12 @@ export function fetchImages(query) {
   return fetch(url)
     .then(res => {
       if (!res.ok) {
-        return Promise.reject('Failed to fetch images');
+        throw new Error('Failed to fetch images');
       }
       return res.json();
     })
-    .then(images => images)
+    .then(data => data.hits)
     .catch(error => {
-      return Promise.reject('Failed to fetch images');
+      throw new Error('Failed to fetch images');
     });
 }
